@@ -7,6 +7,9 @@ package co.com.iteria.parques.service;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -40,6 +43,15 @@ public abstract class AbstractFacade<T> {
     public List<T> findAll() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
+        return getEntityManager().createQuery(cq).getResultList();
+    }
+    
+    public List<T> findStatus(Object status) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        Root<T> utente = cq.from(entityClass);
+        Predicate predicate = cb.equal(utente.get("status"), status);
+        cq.where(predicate);
         return getEntityManager().createQuery(cq).getResultList();
     }
 
