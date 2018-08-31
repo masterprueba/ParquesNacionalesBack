@@ -1,0 +1,5 @@
+co\com\iteria\parques\entity\Parques_.class
+co\com\iteria\parques\service\ApplicationConfig.class
+co\com\iteria\parques\service\ParquesFacadeREST.class
+co\com\iteria\parques\entity\Parques.class
+co\com\iteria\parques\service\AbstractFacade.class
